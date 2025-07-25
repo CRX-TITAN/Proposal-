@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Create a Romantic Proposal - Make It Unforgettable</title>
+  <meta name="description" content="Craft a beautifully themed page to invite someone on a special date. Make your invitation charming, creative, and memorable."/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-pink-200 via-blue-200 to-purple-200">
+
+  <div class="flex flex-col items-center justify-center flex-grow p-4">
+    <h1 class="text-4xl font-bold mb-8 text-pink-600 text-center">Create Your Proposal</h1>
+    <form id="proposalForm" class="w-full max-w-md">
+      <div class="mb-4">
+        <label for="name" class="block text-lg font-medium mb-2 text-pink-600">Enter the name of your date:</label>
+        <input type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-pink-400 text-pink-600 bg-pink-100 focus:ring-pink-500" placeholder="e.g., Alex" required>
+      </div>
+      <span class="mt-2 text-purple-800 px-2 text-center flex items-center justify-center">
+        <span class="text-2xl font-extrabold text-purple-900 mr-1">1000</span>
+        <span>invitations created 🎉</span>
+      </span>
+      <div class="mb-6">
+        <label class="block text-lg font-medium mb-2 text-pink-600">Choose a theme:</label>
+        <div class="grid grid-cols-2 gap-4" id="themeButtons">
+          <button type="button" data-theme="Cute Love" class="p-4 rounded-md border-2 border-pink-500 bg-green-400 text-white hover:bg-green-500">Cute Love</button>
+          <button type="button" data-theme="Pixel Romance" class="p-4 rounded-md border-4 border-red-300 bg-red-500 text-black hover:bg-red-600">Pixel Romance</button>
+          <button type="button" data-theme="Pride Connect" class="p-4 rounded-md border-2 border-red-500 bg-gray-800 text-white hover:bg-gray-900">Pride Connect</button>
+          <button type="button" data-theme="Dark Desire" class="p-4 rounded-md border-2 border-purple-900 bg-red-800 text-white hover:bg-red-900">Dark Desire</button>
+          <button type="button" data-theme="Minimal Elegance" class="p-4 rounded-md border-2 border-gray-400 bg-gray-400 text-white hover:bg-gray-500">Minimal Elegance</button>
+        </div>
+      </div>
+      <input type="hidden" id="theme" name="theme" required>
+      <button type="submit" class="w-full py-3 px-4 rounded-md bg-green-400 text-white hover:bg-green-500">Create Invitation</button>
+    </form>
+  </div>
+
+  <footer class="w-full py-4 bg-gray-900 text-white flex items-center justify-center gap-2">
+    <p>Made with ❤️ by felix</p>
+    <a href="https://www.instagram.com/felix.javascript" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 ml-2">Instagram</a>
+    <a href="https://github.com/felix007/proposal" target="_blank" rel="noopener noreferrer" class="hover:text-gray-500 ml-2">GitHub</a>
+  </footer>
+
+  <script>
+    // Theme selection logic
+    const themeButtons = document.getElementById('themeButtons').querySelectorAll('button');
+    const themeInput = document.getElementById('theme');
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        themeButtons.forEach(b => b.classList.remove('ring-4', 'ring-pink-500'));
+        btn.classList.add('ring-4', 'ring-pink-500');
+        themeInput.value = btn.getAttribute('data-theme');
+      });
+    });
+
+    // Form submission
+    document.getElementById('proposalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const theme = themeInput.value;
+      if(!name || !theme) {
+        alert('Please enter the name and select a theme!');
+        return;
+      }
+      alert(`Invitation created for ${name} with theme "${theme}"!`);
+      // Here, you can extend to actually generate a custom page or send/share the invitation.
+    });
+  </script>
+</body>
+</html>
